@@ -1,0 +1,31 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:${POSTGRES_PORT:5432}}/${POSTGRES_DB:shortener}
+    username: ${POSTGRES_USER:shortener}
+    password: ${POSTGRES_PASSWORD:shortener}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2s
+
+shortener:
+  base-url: ${SHORTENER_BASE_URL:http://localhost:8080}
+  code:
+    length: ${SHORTENER_CODE_LENGTH:8}
+    max-attempts: ${SHORTENER_CODE_MAX_ATTEMPTS:5}
+    retry-backoff: ${SHORTENER_CODE_RETRY_BACKOFF:100ms}
+  cache:
+    ttl: ${SHORTENER_CACHE_TTL:24h}
+  security:
+    encryption-key: ${APP_ENCRYPTION_KEY:2WnGhm7EyUBJGzvmvagJ8BuyQe8ygkKiwnKaK7C1gto=}
+    hmac-key: ${APP_HMAC_KEY:AfhgwO38DfthBtEyRrPROVkRZ2PhRI11yLoLNJLnjiQ=}
+
+

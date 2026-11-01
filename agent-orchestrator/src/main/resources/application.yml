@@ -1,0 +1,21 @@
+server:
+  port: ${ORCHESTRATOR_PORT:8082}
+  address: ${ORCHESTRATOR_BIND_ADDRESS:127.0.0.1}
+
+spring:
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: ${OPENAI_MODEL:gpt-4.1-mini}
+          temperature: 0.1
+
+agent:
+  source-root: ${AGENT_SOURCE_ROOT:.}
+  workspace-root: ${AGENT_WORKSPACE_ROOT:${java.io.tmpdir}/agentic-url-workspaces}
+  max-fix-attempts: ${AGENT_MAX_FIX_ATTEMPTS:3}
+  test-timeout: ${AGENT_TEST_TIMEOUT:180s}
+  docker-image: ${AGENT_TEST_IMAGE:maven:3.9.9-eclipse-temurin-21}
+  docker-user: ${AGENT_DOCKER_USER:1000:1000}
+  maven-cache: ${AGENT_MAVEN_CACHE:${user.home}/.m2/repository}
